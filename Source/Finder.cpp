@@ -119,6 +119,8 @@ public:
 	//Finds greatest group of files that have longest common substring of keywords greater than 20% of content smaller of them.
 	void Do(string outFileName)
 	{
+		if (!loaded)
+			return;
 		Graph * g = new Graph();
 		vector<int> filesConnectedWithFirst;
 		g->add_new_vertex(files[0]);
@@ -211,6 +213,7 @@ private:
 	set<char> startingChars;
 	map<string, vector<char>> fileContents;
 	WuManber * search;
+	bool loaded = false;
 
 	//converts string to char array
 	const char* c_str(string str)
